@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="hashlife.js"></script>
+  </head>
+  <body>
+    <script>
+      $(window).load(function() {
+/*
+        var bitmap = [
+          [0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0],
+          [0,0,0,1,0,0,0,0],
+          [0,0,0,1,1,0,0,0],
+          [0,0,1,1,0,0,0,0],
+          [0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0]];
+*/
+
+        var bitmap = [];
+        for (var i = 0; i < 128; i++) {
+          bitmap[i] = [];
+          for (var j = 0; j < 128; j++) {
+            bitmap[i][j] = Math.random() < 0.5 ? 1 : 0;
+          }
+        }
+
+        h = new Hashlife($('#board'), bitmap, 7);
+        h.start();
+      });
+    </script>
+    <canvas id="board" width="1024" height="1024"></canvas>
+  </body>
+</html>
