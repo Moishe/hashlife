@@ -7,7 +7,7 @@
     <script>
       $(window).load(function() {
         var bitmap = [];
-        var level = 7;
+        var level = 6;
         var size = Math.pow(2, level);
         for (var i = 0; i < size; i++) {
           bitmap[i] = [];
@@ -22,11 +22,27 @@
         bitmap[middle][middle - 1] = 1;
         bitmap[middle][middle + 1] = 1;
         bitmap[middle + 1][middle + 1] = 1;
+/*
+        for (i = 0; i < size; i++) {
+          for (j = 0; j < size; j++) {
+            bitmap[i][j] = 1;
+          }
+        }
+*/
+        for (var i = 0; i < Math.pow(2, level - 1); i++) {
+          var canvas = jQuery("<canvas/>",
+                              {id: "board-" + i,
+                               style: "border:1px solid #000000;",
+                               width: 512,
+                               height: 512}).attr('width', 512).attr('height', 512);
+          $("#board-container").append(canvas);
+        }
 
         h = new Hashlife($('#board'), bitmap, level);
         h.start();
       });
     </script>
+    <div id="board-container" width="1024" height="1024"></div>
     <canvas id="board" width="1024" height="1024"></canvas>
   </body>
 </html>
